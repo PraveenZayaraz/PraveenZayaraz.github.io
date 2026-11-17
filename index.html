@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Praveen Zayaraz Portfolio</title>
+<meta name="description" content="Praveen Zayaraz: software engineer and MS Computer Science student at USC building retrieval systems, AI applications and full-stack products. Open to Summer 2027 internships.">
+<meta property="og:title" content="Praveen Zayaraz, software engineer">
+<meta property="og:description" content="Retrieval systems, AI applications and full-stack products. MS Computer Science at USC. Open to Summer 2027 internships.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23990000'/%3E%3Ctext x='32' y='43' font-family='Arial' font-weight='700' font-size='30' text-anchor='middle' fill='%23FFCC00'%3EPZ%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: a left-aligned index. The work section behaves like a search engine over his own projects. */
+:root {
+  --bg: #EEF0F2;
+  --surface: #FFFFFF;
+  --ink: #14171A;
+  --muted: #56606B;
+  --line: #D2D7DC;
+  --accent: #990000;
+  --mark: #FFCC00;
+  --mark-ink: #14171A;
+  --font-display: "Bricolage Grotesque", "Arial Narrow", Arial, sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #101315;
+    --surface: #181C1F;
+    --ink: #E9EBED;
+    --muted: #9BA4AE;
+    --line: #2B3136;
+    --accent: #FF7A6B;
+    --mark: #FFCC00;
+    --mark-ink: #14171A;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #101315;
+  --surface: #181C1F;
+  --ink: #E9EBED;
+  --muted: #9BA4AE;
+  --line: #2B3136;
+  --accent: #FF7A6B;
+  --mark: #FFCC00;
+  --mark-ink: #14171A;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+a:focus-visible, button:focus-visible, input:focus-visible {
+  outline: 3px solid var(--mark);
+  outline-offset: 3px;
+}
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+/* Top bar */
+.top {
+  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between;
+  gap: 8px 24px; padding: 22px 0; border-bottom: 1px solid var(--line);
+}
+.top .name { font-family: var(--font-display); font-weight: 800; font-size: 1.15rem; text-decoration: none; letter-spacing: -0.01em; }
+.top nav { display: flex; flex-wrap: wrap; gap: 4px 22px; }
+.top nav a { font-family: var(--font-mono); font-size: 0.8rem; text-decoration: none; color: var(--muted); }
+.top nav a:hover { color: var(--accent); }
+
+/* Hero */
+.hero { padding: 72px 0 56px; }
+.eyebrow { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); margin: 0 0 20px; letter-spacing: 0.02em; }
+h1 {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: clamp(2.5rem, 7vw, 5rem); line-height: 0.98; letter-spacing: -0.035em;
+  margin: 0 0 28px; max-width: 14ch; text-wrap: balance;
+}
+h1 mark { background: var(--mark); color: var(--mark-ink); padding: 0 0.12em; border-radius: 4px; }
+.lede { font-size: 1.15rem; max-width: 60ch; margin: 0 0 30px; color: var(--ink); }
+.lede strong { font-weight: 600; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn {
+  display: inline-block; font-family: var(--font-mono); font-size: 0.85rem; font-weight: 500;
+  padding: 11px 18px; border-radius: 6px; text-decoration: none;
+  border: 1.5px solid var(--ink); transition: background .15s, color .15s;
+}
+.btn.primary { background: var(--ink); color: var(--bg); }
+.btn:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+:root[data-theme="dark"] .btn:hover { color: #14171A; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .btn:hover { color: #14171A; } }
+
+.stats {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin-top: 56px;
+}
+.stat { padding: 22px 20px 22px 0; }
+.stat + .stat { padding-left: 20px; border-left: 1px solid var(--line); }
+.stat b {
+  display: block; font-family: var(--font-display); font-weight: 800; font-size: clamp(1.7rem, 3.4vw, 2.5rem);
+  line-height: 1.05; letter-spacing: -0.02em; font-variant-numeric: tabular-nums;
+}
+.stat span { display: block; margin-top: 6px; font-size: 0.86rem; color: var(--muted); line-height: 1.4; }
+
+.hero-top { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 48px; align-items: center; }
+.portrait { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 12px; border: 1.5px solid var(--ink); box-shadow: 10px 10px 0 var(--mark); }
+
+/* Sections */
+section { padding: 64px 0; border-top: 1px solid var(--line); }
+.hero + section { border-top: 0; }
+h2 { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.7rem, 3.4vw, 2.4rem); letter-spacing: -0.025em; line-height: 1.1; margin: 0 0 8px; }
+.sub { color: var(--muted); margin: 0 0 28px; max-width: 60ch; }
+
+/* Search over projects */
+.search {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--surface); border: 1.5px solid var(--ink); border-radius: 8px; padding: 4px 16px;
+}
+.search label { font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent); white-space: nowrap; }
+.search input {
+  flex: 1; min-width: 0; border: 0; background: transparent; color: var(--ink);
+  font-family: var(--font-mono); font-size: 1rem; padding: 13px 0; outline: none;
+}
+.search input::placeholder { color: var(--muted); opacity: 0.8; }
+.search:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--mark) 60%, transparent); }
+.chips { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 14px 0 6px; }
+.chips span { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); }
+.chip {
+  font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink); cursor: pointer;
+  background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px;
+}
+.chip:hover, .chip[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
+.count { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); margin: 18px 0 0; font-variant-numeric: tabular-nums; }
+
+.results { list-style: none; margin: 8px 0 0; padding: 0; }
+.result {
+  display: grid; grid-template-columns: minmax(0, 1fr) 210px; gap: 12px 40px;
+  padding: 28px 0; border-top: 1px solid var(--line);
+}
+.result[hidden] { display: none; }
+.kind { font-family: var(--font-mono); font-size: 0.76rem; color: var(--accent); margin: 0 0 6px; letter-spacing: 0.02em; }
+.result h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.45rem; letter-spacing: -0.015em; line-height: 1.2; margin: 0 0 8px; }
+.result p.desc { margin: 0 0 14px; max-width: 62ch; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 0; padding: 0; }
+.tags li { font-family: var(--font-mono); font-size: 0.74rem; color: var(--muted); border: 1px solid var(--line); border-radius: 4px; padding: 2px 8px; background: var(--surface); }
+.metric { align-self: start; border-left: 3px solid var(--mark); padding-left: 16px; }
+.metric b { display: block; font-family: var(--font-display); font-weight: 800; font-size: 1.9rem; line-height: 1.05; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.metric span { display: block; margin-top: 6px; font-size: 0.84rem; color: var(--muted); line-height: 1.4; }
+.empty { padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted); }
+.empty[hidden] { display: none; }
+
+.links-row { margin: 14px 0 0; font-family: var(--font-mono); font-size: 0.82rem; color: var(--muted); }
+.links-row a { color: var(--accent); text-underline-offset: 3px; }
+
+/* Case study */
+#case-study > .kind { margin-bottom: 8px; }
+.pipeline { list-style: none; counter-reset: step; margin: 8px 0 40px; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; border: 1.5px solid var(--ink); border-radius: 8px; background: var(--surface); overflow: hidden; }
+.pipeline li { counter-increment: step; padding: 16px 16px 18px; border-left: 1px solid var(--line); }
+.pipeline li:first-child { border-left: 0; }
+.pipeline li::before { content: "0" counter(step); display: block; font-family: var(--font-mono); font-size: 0.74rem; color: var(--accent); margin-bottom: 8px; }
+.pipeline b { display: block; font-family: var(--font-display); font-weight: 700; font-size: 1.02rem; line-height: 1.2; margin-bottom: 6px; }
+.pipeline span { display: block; font-size: 0.86rem; color: var(--muted); line-height: 1.45; }
+.case h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; margin: 0 0 14px; }
+.facts { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+.facts th { text-align: left; font-weight: 400; padding: 9px 12px 9px 0; border-top: 1px solid var(--line); }
+.facts td { text-align: right; font-family: var(--font-display); font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; padding: 9px 0; border-top: 1px solid var(--line); }
+.decisions { margin: 0; padding: 0; list-style: none; }
+.decisions li { padding: 9px 0; border-top: 1px solid var(--line); font-size: 0.95rem; }
+.decisions b { font-weight: 600; }
+
+/* Experience */
+.roles { list-style: none; margin: 0; padding: 0; }
+.role { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 6px 40px; padding: 24px 0; border-top: 1px solid var(--line); }
+.role:first-child { border-top: 0; padding-top: 8px; }
+.when { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); padding-top: 5px; font-variant-numeric: tabular-nums; }
+.role h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; letter-spacing: -0.01em; margin: 0; line-height: 1.25; }
+.role .org { color: var(--muted); margin: 2px 0 10px; font-size: 0.95rem; }
+.role ul { margin: 0; padding-left: 18px; max-width: 62ch; }
+.role li { margin-bottom: 4px; }
+
+/* Education and skills */
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 40px 56px; }
+.school { padding: 0 0 22px; }
+.school + .school { border-top: 1px solid var(--line); padding-top: 22px; }
+.school h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; margin: 0 0 2px; line-height: 1.25; }
+.school p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+.school p.deg { color: var(--ink); }
+dl.skills { margin: 0; }
+dl.skills dt { font-family: var(--font-mono); font-size: 0.76rem; color: var(--accent); margin-top: 18px; }
+dl.skills dt:first-child { margin-top: 0; }
+dl.skills dd { margin: 4px 0 0; }
+h2.small { font-size: 1.5rem; margin-bottom: 20px; }
+
+/* Contact */
+.contact h2 { font-size: clamp(2rem, 5vw, 3.4rem); max-width: 16ch; text-wrap: balance; margin-bottom: 20px; }
+.links { list-style: none; margin: 28px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+.links a {
+  display: block; background: var(--surface); border: 1px solid var(--line); border-radius: 8px;
+  padding: 16px 18px; text-decoration: none; transition: border-color .15s;
+}
+.links a:hover { border-color: var(--accent); }
+.links small { display: block; font-family: var(--font-mono); font-size: 0.74rem; color: var(--accent); }
+.links b { font-family: var(--font-mono); font-weight: 500; font-size: 0.92rem; word-break: break-word; }
+footer { padding: 26px 0 48px; border-top: 1px solid var(--line); font-family: var(--font-mono); font-size: 0.76rem; color: var(--muted); }
+
+@media (max-width: 760px) {
+  .hero { padding: 48px 0 40px; }
+  .hero-top { grid-template-columns: 1fr; gap: 28px; }
+  .hero-top .portrait { order: -1; width: 132px; box-shadow: 6px 6px 0 var(--mark); }
+  .stats { grid-template-columns: 1fr 1fr; }
+  .stat:nth-child(3) { padding-left: 0; border-left: 0; }
+  .stat:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .result, .role, .two { grid-template-columns: 1fr; }
+  .pipeline { grid-template-columns: 1fr; }
+  .pipeline li { border-left: 0; border-top: 1px solid var(--line); }
+  .pipeline li:first-child { border-top: 0; }
+  .metric { margin-top: 6px; }
+  section { padding: 48px 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <a class="name" href="#top">Praveen Zayaraz</a>
+    <nav aria-label="Sections">
+      <a href="#work">Work</a>
+      <a href="#case-study">Case study</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <div class="hero">
+      <div class="hero-top">
+      <div>
+      <p class="eyebrow">Software engineer · MS Computer Science at USC · Los Angeles</p>
+      <h1>I build software that <mark>finds</mark> the right answer.</h1>
+      <p class="lede">Retrieval systems, AI applications and the full-stack products around them. I've built a resume-to-job matcher, a question-paper generator that works from any syllabus and textbook, and a role-based React platform. <strong>Open to Summer 2027 internships</strong> in software engineering, AI/ML and full-stack development.</p>
+      <div class="actions">
+        <a class="btn primary" href="#work">See my work</a>
+        <a class="btn" href="https://github.com/PraveenZayaraz">GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/praveen-zayaraz">LinkedIn</a>
+        <a class="btn" href="mailto:pzayaraz@usc.edu">Email</a>
+      </div>
+      </div>
+      <img class="portrait" src="photo.jpg" width="480" height="480" alt="Portrait of Praveen Zayaraz">
+      </div>
+
+      <div class="stats">
+        <div class="stat"><b>102/102</b><span>syllabus topics matched to textbook passages by my question-paper generator</span></div>
+        <div class="stat"><b>4.63M</b><span>URL records collected by my seven-worker web crawler</span></div>
+        <div class="stat"><b>43,400</b><span>patient records behind my published stroke-prediction study</span></div>
+        <div class="stat"><b>9.0/10</b><span>GPA, B.Tech in Computer Science and Engineering</span></div>
+      </div>
+    </div>
+
+    <section id="work">
+      <h2>Work</h2>
+      <p class="sub">Most of what I build is search of some kind, so this list is searchable. Type a technology or a topic.</p>
+
+      <div class="search">
+        <label for="q">search:</label>
+        <input id="q" type="search" autocomplete="off" spellcheck="false" placeholder="rag, react, crawler, python">
+      </div>
+      <div class="chips" id="chips">
+        <span>Try</span>
+        <button class="chip" type="button" data-q="rag" aria-pressed="false">rag</button>
+        <button class="chip" type="button" data-q="embeddings" aria-pressed="false">embeddings</button>
+        <button class="chip" type="button" data-q="react" aria-pressed="false">react</button>
+        <button class="chip" type="button" data-q="python" aria-pressed="false">python</button>
+        <button class="chip" type="button" data-q="research" aria-pressed="false">research</button>
+        <button class="chip" type="button" data-q="" aria-pressed="false">show all</button>
+      </div>
+      <p class="count" id="count" aria-live="polite">6 of 6 projects</p>
+
+      <ul class="results" id="results">
+        <li class="result">
+          <div>
+            <p class="kind">Capstone · Retrieval-augmented generation</p>
+            <h3>AI Question Paper Generator</h3>
+            <p class="desc">Upload any syllabus and textbook and get exam questions tied to the syllabus, pitched at a Bloom's taxonomy level, each with its source pages. Hybrid retrieval combines FAISS vectors with BM25 keywords, and Llama 3 writes the questions. Covered by 49 automated tests that run on every push.</p>
+            <ul class="tags"><li>Python</li><li>FastAPI</li><li>React</li><li>FAISS</li><li>BM25</li><li>SentenceTransformers</li><li>Llama 3</li><li>RAG</li><li>pytest</li><li>GitHub Actions</li></ul>
+            <p class="links-row"><a href="https://github.com/PraveenZayaraz/AI-Question-Paper-Generator">Code on GitHub</a> · <a href="#case-study">Read the case study</a></p>
+          </div>
+          <div class="metric"><b>102 of 102</b><span>syllabus topics found and matched to the textbook with no manual mapping</span></div>
+        </li>
+
+        <li class="result">
+          <div>
+            <p class="kind">KNS Technologies · AI and semantic search</p>
+            <h3>ZeeCruiter</h3>
+            <p class="desc">An explainable resume-to-role matcher that I built as primary developer. It scores one resume against up to five job descriptions on three separate components: MiniLM semantic similarity over overlapping chunks, lexical similarity, and coverage of 64 recognised technologies. Every matched skill shows its evidence, and optional feedback comes from a local Mistral model through Ollama.</p>
+            <ul class="tags"><li>Python</li><li>MiniLM</li><li>Embeddings</li><li>Semantic search</li><li>Streamlit</li><li>Ollama</li><li>Mistral</li><li>LLM</li></ul>
+          </div>
+          <div class="metric"><b>3</b><span>scoring components, each shown separately so a match can be explained</span></div>
+        </li>
+
+        <li class="result">
+          <div>
+            <p class="kind">KNS Technologies · Frontend</p>
+            <h3>Asset Management Platform</h3>
+            <p class="desc">A modular single-page app with reusable components and role-based workflows: about 20 components, 10 page-level routes, 8 protected routes and 4 forms. The hardest part was the light and dark theme system.</p>
+            <ul class="tags"><li>React</li><li>Vite</li><li>Redux Toolkit</li><li>JavaScript</li><li>Role-based access</li></ul>
+          </div>
+          <div class="metric"><b>17</b><span>administrator views</span></div>
+        </li>
+
+        <li class="result">
+          <div>
+            <p class="kind">USC coursework · Information retrieval</p>
+            <h3>LA Times Web Crawler</h3>
+            <p class="desc">A seven-worker Python crawler for latimes.com, built for Information Retrieval and Web Search Engines. The validated run made 10,000 fetches, visited 9,572 pages and reached depth 16. The report covers status codes, file sizes and content types.</p>
+            <ul class="tags"><li>Python</li><li>Web crawler</li><li>Concurrency</li><li>Information retrieval</li><li>Search</li></ul>
+          </div>
+          <div class="metric"><b>4,633,929</b><span>URL records collected</span></div>
+        </li>
+
+        <li class="result">
+          <div>
+            <p class="kind">Project · Machine learning</p>
+            <h3>Car Price Intelligence</h3>
+            <p class="desc">A used-car price estimator trained on 6,926 deduplicated listings. I replaced my original linear model with a scikit-learn pipeline around a Random Forest, removed 1,202 duplicate rows before splitting, and evaluated on grouped five-fold splits so near-identical listings cannot sit on both sides. Mean absolute error fell by 58%. A Streamlit app explains each estimate.</p>
+            <ul class="tags"><li>Python</li><li>scikit-learn</li><li>Random Forest</li><li>pandas</li><li>Streamlit</li><li>Machine learning</li></ul>
+            <p class="links-row"><a href="https://github.com/PraveenZayaraz/Car-Price-Intelligence">Code on GitHub</a></p>
+          </div>
+          <div class="metric"><b>0.61 to 0.91</b><span>mean R² on identical five-fold splits, linear baseline against the new pipeline</span></div>
+        </li>
+
+        <li class="result">
+          <div>
+            <p class="kind">Published research · Machine learning</p>
+            <h3>Stroke Prediction with GRU and AdaBoost-CNN</h3>
+            <p class="desc">A hybrid deep-learning model for stroke prediction, evaluated on accuracy, recall, F1 and AUC. Co-authored and published as a journal paper in April 2025.</p>
+            <ul class="tags"><li>Python</li><li>GRU</li><li>CNN</li><li>AdaBoost</li><li>Deep learning</li><li>Research</li></ul>
+          </div>
+          <div class="metric"><b>43,400</b><span>records in the evaluation</span></div>
+        </li>
+      </ul>
+      <p class="empty" id="empty" hidden>No project matches that. Try <em>python</em> or <em>react</em>, or clear the search.</p>
+    </section>
+
+
+    <section id="case-study">
+      <p class="kind">Case study</p>
+      <h2>AI Question Paper Generator</h2>
+      <p class="sub">Writing a balanced exam paper by hand takes a teacher hours. This tool drafts one from the course's own syllabus and textbook, and shows where every question came from.</p>
+
+      <ol class="pipeline" aria-label="How the system works">
+        <li><b>Read the syllabus</b><span>Rules find units and topics. Llama 3 is the fallback, and any topic it invents is discarded.</span></li>
+        <li><b>Index the textbook</b><span>Pages become overlapping passages with page numbers. Exercise lists and references are skipped.</span></li>
+        <li><b>Retrieve</b><span>FAISS vector search and BM25 keyword search are merged with reciprocal rank fusion.</span></li>
+        <li><b>Generate</b><span>Llama 3 writes from one section of the book, at the Bloom's level the marks call for.</span></li>
+        <li><b>Check</b><span>Vague, duplicate or weakly grounded questions are rejected and retried.</span></li>
+      </ol>
+
+      <div class="two case">
+        <div>
+          <h3>Measured on a 962-page textbook</h3>
+          <table class="facts">
+            <tbody>
+              <tr><th scope="row">Passages indexed</th><td>3,135</td></tr>
+              <tr><th scope="row">Syllabus topics found, with no manual mapping</th><td>102</td></tr>
+              <tr><th scope="row">Topics matched to textbook material</th><td>102 of 102</td></tr>
+              <tr><th scope="row">Questions generated in a 20-topic evaluation</th><td>19 of 20</td></tr>
+              <tr><th scope="row">Mean grounding score against source passages</th><td>0.67</td></tr>
+              <tr><th scope="row">Valid on the first attempt</th><td>89.5%</td></tr>
+              <tr><th scope="row">Mean time per question, running locally</th><td>3.8 s</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <h3>Decisions that mattered</h3>
+          <ul class="decisions">
+            <li><b>Rules before the model.</b> A rule-based syllabus parser is instant and cannot invent topics, so the language model is only a fallback.</li>
+            <li><b>Two searches, fused.</b> Embeddings blur exact terms such as CRC and IPv4. Keyword search catches them.</li>
+            <li><b>One section per question.</b> Mixing passages from different chapters made questions drift, so sources must sit within a few pages of each other.</li>
+            <li><b>Llama 3 over Flan-T5.</b> In my earlier comparison it scored 0.74 against 0.55 on relevance and ran faster.</li>
+            <li><b>A known limit.</b> Grounding measures similarity, not correctness, so the output is a draft for a teacher to review.</li>
+          </ul>
+          <p class="links-row"><a href="https://github.com/PraveenZayaraz/AI-Question-Paper-Generator">Code and README on GitHub</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2>Experience</h2>
+      <p class="sub">Two roles at KNS Technologies in Bangalore, and website work for a USC student association.</p>
+      <ul class="roles">
+        <li class="role">
+          <div class="when">Oct 2026 to now</div>
+          <div>
+            <h3>Technology Team Member</h3>
+            <p class="org">USC Association of Indian Students · Los Angeles</p>
+            <ul>
+              <li>Maintain the association's website.</li>
+              <li>Built the sponsor section with tiered, fully clickable sponsor cards, checked for responsive layout and accessibility.</li>
+            </ul>
+          </div>
+        </li>
+        <li class="role">
+          <div class="when">Feb 2026 to Jun 2026</div>
+          <div>
+            <h3>Trainee Software Engineer</h3>
+            <p class="org">KNS Technologies · Bangalore, India</p>
+            <ul>
+              <li>Built an asset-management single-page app with React, Vite and Redux Toolkit.</li>
+              <li>Implemented role-based workflows with protected routes and administrator views.</li>
+              <li>Designed the light and dark theme system and took part in code reviews.</li>
+            </ul>
+          </div>
+        </li>
+        <li class="role">
+          <div class="when">Jun 2023 to Jun 2024</div>
+          <div>
+            <h3>Data Science and AI Intern</h3>
+            <p class="org">KNS Technologies · Bangalore, India</p>
+            <ul>
+              <li>Primary developer of ZeeCruiter, a resume-to-job matcher.</li>
+              <li>Built semantic search on MiniLM embeddings with skill extraction.</li>
+              <li>Ran Mistral locally through Ollama for evidence-backed match analysis.</li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section id="education">
+      <div class="two">
+        <div>
+          <h2 class="small">Education</h2>
+          <div class="school">
+            <h3>University of Southern California</h3>
+            <p class="deg">M.S. in Computer Science, Machine Learning specialization</p>
+            <p>Expected May 2028 · Los Angeles</p>
+            <p>Coursework: Analysis of Algorithms, Information Retrieval and Web Search Engines</p>
+          </div>
+          <div class="school">
+            <h3>Puducherry Technological University</h3>
+            <p class="deg">B.Tech in Computer Science and Engineering</p>
+            <p>Nov 2021 to May 2025 · GPA 9.0/10</p>
+          </div>
+        </div>
+        <div>
+          <h2 class="small">Skills</h2>
+          <dl class="skills">
+            <dt>Languages</dt>
+            <dd>Python, Java, JavaScript, SQL, C, C++</dd>
+            <dt>AI and retrieval</dt>
+            <dd>RAG, FAISS, BM25, SentenceTransformers, MiniLM embeddings, Llama 3, Mistral, scikit-learn, pandas</dd>
+            <dt>Web</dt>
+            <dd>React, Vite, Redux Toolkit, FastAPI, Flask, REST APIs</dd>
+            <dt>Tools</dt>
+            <dd>Git, GitHub, pytest, MySQL, Linux, Bash</dd>
+            <dt>Spoken languages</dt>
+            <dd>Tamil (native), English (professional), French (intermediate)</dd>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2>Looking for a Summer 2027 intern?</h2>
+      <p class="sub">I'm available from May 17 to August 20, 2027, and I'm happy to relocate within the US. Email is the fastest way to reach me.</p>
+      <ul class="links">
+        <li><a href="mailto:pzayaraz@usc.edu"><small>Email</small><b>pzayaraz@usc.edu</b></a></li>
+        <li><a href="https://www.linkedin.com/in/praveen-zayaraz"><small>LinkedIn</small><b>linkedin.com/in/praveen-zayaraz</b></a></li>
+        <li><a href="https://github.com/PraveenZayaraz"><small>GitHub</small><b>github.com/PraveenZayaraz</b></a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>Praveen Zayaraz · Los Angeles, California</footer>
+</div>
+
+<script>
+(function () {
+  var input = document.getElementById('q');
+  var items = Array.prototype.slice.call(document.querySelectorAll('#results .result'));
+  var count = document.getElementById('count');
+  var empty = document.getElementById('empty');
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var texts = items.map(function (el) { return el.textContent.toLowerCase(); });
+
+  function run() {
+    var terms = input.value.toLowerCase().split(/[\s,]+/).filter(Boolean);
+    var shown = 0;
+    items.forEach(function (el, i) {
+      var hit = terms.every(function (t) { return texts[i].indexOf(t) !== -1; });
+      el.hidden = !hit;
+      if (hit) shown++;
+    });
+    count.textContent = shown + ' of ' + items.length + ' projects';
+    empty.hidden = shown !== 0;
+    var v = input.value.trim().toLowerCase();
+    chips.forEach(function (c) {
+      c.setAttribute('aria-pressed', String(c.dataset.q !== '' && c.dataset.q === v));
+    });
+  }
+  input.addEventListener('input', run);
+  chips.forEach(function (c) {
+    c.addEventListener('click', function () { input.value = c.dataset.q; run(); });
+  });
+  run();
+})();
+</script>
+</body>
+</html>
